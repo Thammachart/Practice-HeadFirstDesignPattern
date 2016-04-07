@@ -1,0 +1,10 @@
+apply plugin: 'application'
+
+def mainClass = "org.sim.MiniDuckSimulator"
+mainClassName = mainClass
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClass
+    }
+}
