@@ -3,7 +3,6 @@ package org.starbuzz.condiment;
 import org.starbuzz.beverage.Beverage;
 
 public class Mocha extends CondimentDecorator {
-    Beverage beverage;
 
     public Mocha(Beverage beverage) {
         this.beverage = beverage;

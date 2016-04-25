@@ -3,7 +3,6 @@ package org.starbuzz.condiment;
 import org.starbuzz.beverage.Beverage;
 
 public class SteamedMilk extends CondimentDecorator {
-    Beverage beverage;
 
     public SteamedMilk(Beverage beverage) {
         this.beverage = beverage;

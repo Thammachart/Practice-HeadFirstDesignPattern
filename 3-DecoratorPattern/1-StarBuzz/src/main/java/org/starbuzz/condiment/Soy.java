@@ -3,7 +3,6 @@ package org.starbuzz.condiment;
 import org.starbuzz.beverage.Beverage;
 
 public class Soy extends CondimentDecorator {
-    Beverage beverage;
 
     public Soy(Beverage beverage) {
         this.beverage = beverage;
@@ -16,6 +15,18 @@ public class Soy extends CondimentDecorator {
 
     @Override
     public double cost() {
-        return beverage.cost() + 0.15;
+        double price = beverage.cost();
+        switch (this.getSize()) {
+            case TALL:
+                price += 0.10;
+            break;
+            case GRANDE:
+                price += 0.15;
+            break;
+            case VENTI:
+                price += 0.20;
+            break;
+        }
+        return price;
     }
 }

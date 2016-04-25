@@ -3,7 +3,6 @@ package org.starbuzz.condiment;
 import org.starbuzz.beverage.Beverage;
 
 public class Whip extends CondimentDecorator {
-    Beverage beverage;
 
     public Whip(Beverage beverage) {
         this.beverage = beverage;
