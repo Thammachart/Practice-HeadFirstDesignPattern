@@ -1,6 +1,6 @@
 package org.pizza;
 
-import org.pizza.factory.*;
+import org.pizza.store.*;
 import org.pizza.pizza.*;
 
 public class PizzaTestDrive {

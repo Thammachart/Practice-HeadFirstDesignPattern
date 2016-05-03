@@ -1,4 +1,4 @@
-package org.pizza.factory;
+package org.pizza.store;
 
 import org.pizza.pizza.Pizza;
 
