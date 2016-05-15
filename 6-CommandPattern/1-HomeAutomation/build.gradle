@@ -7,18 +7,14 @@
  * user guide available at https://docs.gradle.org/2.13/userguide/tutorial_java_projects.html
  */
 
-apply plugin: 'application'
-
-def mainClass = "org.home.RemoteControlClient"
-mainClass = project.hasProperty('dynamicMainClass')? dynamicMainClass: mainClass
-mainClassName = mainClass
-
-jar {
-    manifest {
-        attributes "Main-Class": mainClass
-    }
-}
+apply plugin: 'java'
 
 repositories {
     jcenter()
+}
+
+test.testLogging.showStandardStreams = true
+
+dependencies {
+    testCompile 'junit:junit:4.7'
 }

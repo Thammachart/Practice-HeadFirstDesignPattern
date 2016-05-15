@@ -1,12 +1,32 @@
 package org.home;
 
-import org.home.remote.RemoteControl;
+import org.junit.Test;
 
-import org.home.device.*;
 import org.home.command.*;
+import org.home.device.*;
+import org.home.remote.*;
 
-public class RemoteControlClient {
-    public static void main(String args[]) {
+public class ClientTest {
+
+    @Test
+    public void SimpleClient() {
+        SimpleRemoteControl remote = new SimpleRemoteControl();
+
+        Light light = new Light();
+        GarageDoor garageDoor = new GarageDoor();
+
+        Command lightOn = new LightOnCommand(light);
+        Command garageDoorOpen = new GarageDoorOpenCommand(garageDoor);
+
+        remote.setCommand(lightOn);
+        remote.buttonWasPressed();
+
+        remote.setCommand(garageDoorOpen);
+        remote.buttonWasPressed();
+    }
+
+    @Test
+    public void StandardRemoteControlClient() {
         RemoteControl remoteControl = new RemoteControl();
 
         Light livingRoomLight = new Light("Living Room");
@@ -58,8 +78,37 @@ public class RemoteControlClient {
         System.out.println(remoteControl);
         remoteControl.undoButtonWasPressed();
 
-        remoteControl.onButtonWasPressed(5);;
+        remoteControl.onButtonWasPressed(5);
         System.out.println(remoteControl);
+        remoteControl.undoButtonWasPressed();
+    }
+
+    @Test
+    public void MacroRemoteControlClient() {
+        RemoteControl remoteControl = new RemoteControl();
+
+        Light light = new Light("Living Room");
+        Stereo stereo = new Stereo("Living Room");
+
+        LightOnCommand lightOnCommand = new LightOnCommand(light);
+        StereoOnWithCDCommand stereoOnWithCDCommand = new StereoOnWithCDCommand(stereo);
+
+        LightOffCommand lightOffCommand = new LightOffCommand(light);
+        StereoOffCommand stereoOffCommand = new StereoOffCommand(stereo);
+
+        MacroCommand partyOnMacro = new MacroCommand(lightOnCommand,stereoOnWithCDCommand);
+        MacroCommand partyOffMacro = new MacroCommand(lightOffCommand,stereoOffCommand);
+
+        remoteControl.setCommand(0, partyOnMacro, partyOffMacro);
+
+        System.out.println(remoteControl);
+        System.out.println("---Pushing Macro On---");
+        remoteControl.onButtonWasPressed(0);
+
+        System.out.println("---Pushing Macro On---");
+        remoteControl.offButtonWasPressed(0);
+
+        System.out.println("---Pushing Undo---");
         remoteControl.undoButtonWasPressed();
     }
 }
