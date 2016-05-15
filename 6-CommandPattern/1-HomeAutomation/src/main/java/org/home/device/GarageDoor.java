@@ -1,23 +1,32 @@
 package org.home.device;
 
-public class GarageDoor {
+public class GarageDoor extends Device {
+
+    public GarageDoor() {
+        super();
+    }
+
+    public GarageDoor(String name) {
+        super(name);
+    }
+
     public void up() {
-        System.out.println("Garage Door is up");
+        System.out.println(name + " Garage Door is up");
     }
 
     public void down() {
-        System.out.println("Garage Door is down");
+        System.out.println(name + " Garage Door is down");
     }
 
     public void stop() {
-        System.out.println("Garage Door is stopped");
+        System.out.println(name + " Garage Door is stopped");
     }
 
     public void lightOn() {
-        System.out.println("Garage Door Light is on");
+        System.out.println(name + " Garage Door Light is on");
     }
 
     public void lightOff() {
-        System.out.println("Garage Door Light is off");
+        System.out.println(name + "Garage Door Light is off");
     }
 }

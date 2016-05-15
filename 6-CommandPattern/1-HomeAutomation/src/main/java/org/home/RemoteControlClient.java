@@ -1,26 +1,65 @@
 package org.home;
 
-import org.home.device.Light;
-import org.home.device.GarageDoor;
+import org.home.remote.RemoteControl;
 
-import org.home.command.Command;
-import org.home.command.LightOnCommand;
-import org.home.command.GarageDoorOpenCommand;
+import org.home.device.*;
+import org.home.command.*;
 
 public class RemoteControlClient {
     public static void main(String args[]) {
-        SimpleRemoteControl remote = new SimpleRemoteControl();
+        RemoteControl remoteControl = new RemoteControl();
 
-        Light light = new Light();
+        Light livingRoomLight = new Light("Living Room");
+        Light kitchenLight = new Light("Kitchen");
+        CeilingFan ceilingFan = new CeilingFan("Living Room");
         GarageDoor garageDoor = new GarageDoor();
+        Stereo stereo = new Stereo("Living Room");
 
-        Command lightOn = new LightOnCommand(light);
-        Command garageDoorOpen = new GarageDoorOpenCommand(garageDoor);
+        LightOnCommand livingRoomLightOnCommand = new LightOnCommand(livingRoomLight);
+        LightOffCommand livingRoomLightOffCommand = new LightOffCommand(livingRoomLight);
 
-        remote.setCommand(lightOn);
-        remote.buttonWasPressed();
+        LightOnCommand kitchenLightOnCommand = new LightOnCommand(kitchenLight);
+        LightOffCommand kitchenLightOffCommand = new LightOffCommand(kitchenLight);
 
-        remote.setCommand(garageDoorOpen);
-        remote.buttonWasPressed();
+        CeilingFanMediumCommand ceilingFanMediumCommand = new CeilingFanMediumCommand(ceilingFan);
+        CeilingFanHighCommand ceilingFanHighCommand = new CeilingFanHighCommand(ceilingFan);
+        CeilingFanOffCommand ceilingFanOffCommand = new CeilingFanOffCommand(ceilingFan);
+
+        GarageDoorOpenCommand garageDoorOpenCommand = new GarageDoorOpenCommand(garageDoor);
+        GarageDoorCloseCommand garageDoorCloseCommand = new GarageDoorCloseCommand(garageDoor);
+
+        StereoOnWithCDCommand stereoOnWithCDCommand = new StereoOnWithCDCommand(stereo);
+        StereoOffCommand stereoOffCommand = new StereoOffCommand(stereo);
+
+        remoteControl.setCommand(0, livingRoomLightOnCommand, livingRoomLightOffCommand);
+        remoteControl.setCommand(1, kitchenLightOnCommand, kitchenLightOffCommand);
+        remoteControl.setCommand(3, stereoOnWithCDCommand, stereoOffCommand);
+
+        remoteControl.setCommand(4, ceilingFanMediumCommand, ceilingFanOffCommand);
+        remoteControl.setCommand(5, ceilingFanHighCommand, ceilingFanOffCommand);
+
+        remoteControl.onButtonWasPressed(0);
+        remoteControl.offButtonWasPressed(0);
+        System.out.println(remoteControl);
+        remoteControl.undoButtonWasPressed();
+
+        remoteControl.onButtonWasPressed(1);
+        remoteControl.offButtonWasPressed(1);
+        System.out.println(remoteControl);
+        remoteControl.undoButtonWasPressed();
+
+        remoteControl.onButtonWasPressed(2);
+        remoteControl.offButtonWasPressed(2);
+        remoteControl.onButtonWasPressed(3);
+        remoteControl.offButtonWasPressed(3);
+
+        remoteControl.onButtonWasPressed(4);
+        remoteControl.offButtonWasPressed(4);
+        System.out.println(remoteControl);
+        remoteControl.undoButtonWasPressed();
+
+        remoteControl.onButtonWasPressed(5);;
+        System.out.println(remoteControl);
+        remoteControl.undoButtonWasPressed();
     }
 }

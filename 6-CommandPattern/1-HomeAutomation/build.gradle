@@ -10,6 +10,7 @@
 apply plugin: 'application'
 
 def mainClass = "org.home.RemoteControlClient"
+mainClass = project.hasProperty('dynamicMainClass')? dynamicMainClass: mainClass
 mainClassName = mainClass
 
 jar {

@@ -1,4 +1,4 @@
-package org.home;
+package org.home.remote;
 
 import org.home.command.Command;
 

@@ -2,20 +2,20 @@ package org.home.command;
 
 import org.home.device.GarageDoor;
 
-public class GarageDoorOpenCommand implements Command {
+public class GarageDoorCloseCommand implements Command {
     GarageDoor garageDoor;
 
-    public GarageDoorOpenCommand(GarageDoor garageDoor) {
+    public GarageDoorCloseCommand(GarageDoor garageDoor) {
         this.garageDoor = garageDoor;
     }
 
     @Override
     public void execute() {
-        garageDoor.up();
+        garageDoor.down();
     }
 
     @Override
     public void undo() {
-        garageDoor.down();
+        garageDoor.up();
     }
 }
