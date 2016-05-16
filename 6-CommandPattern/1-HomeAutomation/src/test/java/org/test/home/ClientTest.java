@@ -1,4 +1,4 @@
-package org.home;
+package org.test.home;
 
 import org.junit.Test;
 
