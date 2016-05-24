@@ -1,4 +1,4 @@
-package org.starbuzz.beverage;
+package org.starbuzz.beverage.template;
 
 public abstract class CaffeineBeverage {
     public final void prepareRecipe() {

@@ -1,4 +1,4 @@
-package org.starbuzz.beverage;
+package org.starbuzz.beverage.template;
 
 public class Coffee extends CaffeineBeverage {
     @Override
