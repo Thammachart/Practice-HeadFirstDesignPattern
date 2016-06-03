@@ -1,29 +1,15 @@
 package org.diner;
 
-import java.util.Iterator;
-import java.util.List;
-
-import org.diner.menus.menuitems.MenuItem;
+import org.diner.menus.MenuComponent;
 
 public class Waiter {
-    private List<Iterable<MenuItem>> menus;
+    private MenuComponent rootMenuComponent;
 
-    public Waiter(List<Iterable<MenuItem>> menus) {
-        this.menus = menus;
+    public Waiter(MenuComponent rootMenuComponent) {
+        this.rootMenuComponent = rootMenuComponent;
     }
 
     public void printMenu() {
-        for(Iterable<MenuItem> menu : menus) {
-            printMenu(menu);
-        }
+        rootMenuComponent.print();
     }
-
-    private void printMenu(Iterable<MenuItem> menu) {
-        for(MenuItem menuItem : menu) {
-            System.out.print(menuItem.getName() + ", ");
-            System.out.print(menuItem.getPrice() + " -- ");
-            System.out.println(menuItem.getDescription());
-        }
-    }
-
 }

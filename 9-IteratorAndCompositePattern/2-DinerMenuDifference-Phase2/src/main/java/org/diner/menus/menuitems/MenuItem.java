@@ -1,6 +1,8 @@
 package org.diner.menus.menuitems;
 
-public class MenuItem {
+import org.diner.menus.MenuComponent;
+
+public class MenuItem implements MenuComponent {
     private String name;
     private String description;
     private boolean vegetarian;
@@ -13,10 +15,12 @@ public class MenuItem {
         this.price = price;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
@@ -27,5 +31,14 @@ public class MenuItem {
 
     public boolean isVegetarian() {
         return vegetarian;
+    }
+
+    @Override
+    public void print() {
+        System.out.print("  " + getName());
+        if(isVegetarian())
+            System.out.print("(v)");
+        System.out.println(", " + getPrice());
+        System.out.println("    -- " + getDescription());
     }
 }
