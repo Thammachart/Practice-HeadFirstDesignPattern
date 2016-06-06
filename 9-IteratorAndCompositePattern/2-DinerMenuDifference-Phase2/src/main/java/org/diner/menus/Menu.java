@@ -3,9 +3,14 @@ package org.diner.menus;
 import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import org.diner.menus.iterators.CompositeIterator;
 
 public class Menu implements MenuComponent {
     private List<MenuComponent> menuComponents;
+    private Iterator<MenuComponent> iterator;
+
     private String name;
     private String description;
 
@@ -51,5 +56,14 @@ public class Menu implements MenuComponent {
         for(MenuComponent menuComponent : menuComponents) {
             menuComponent.print();
         }
+    }
+
+    @Override
+    public Iterator<MenuComponent> iterator() {
+        if(iterator == null) {
+            iterator = new CompositeIterator(menuComponents.iterator());
+        }
+
+        return iterator;
     }
 }

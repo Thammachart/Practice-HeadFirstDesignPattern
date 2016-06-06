@@ -1,8 +1,12 @@
 package org.diner.menus;
 
-public interface MenuComponent {
+import java.util.Iterator;
+
+public interface MenuComponent extends Iterable<MenuComponent>{
     String getName();
     String getDescription();
 
     void print();
+
+    Iterator<MenuComponent> iterator();
 }

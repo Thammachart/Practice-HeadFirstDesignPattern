@@ -1,6 +1,9 @@
 package org.diner.menus.menuitems;
 
 import org.diner.menus.MenuComponent;
+import org.diner.menus.iterators.NullIterator;
+
+import java.util.Iterator;
 
 public class MenuItem implements MenuComponent {
     private String name;
@@ -40,5 +43,10 @@ public class MenuItem implements MenuComponent {
             System.out.print("(v)");
         System.out.println(", " + getPrice());
         System.out.println("    -- " + getDescription());
+    }
+
+    @Override
+    public Iterator<MenuComponent> iterator() {
+        return new NullIterator();
     }
 }
