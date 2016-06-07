@@ -24,7 +24,7 @@ public class GumballMachine {
                 System.out.println("You inserted a quarter");
             break;
             case STATE_SOLD_OUT:
-                System.out.println("You can't insert a qarter, the machine is sold out");
+                System.out.println("You can't insert a quarter, the machine is sold out");
             break;
             case STATE_SOLD:
                 System.out.println("Please wait, we're already giving you a gumball");
@@ -58,7 +58,7 @@ public class GumballMachine {
                 dispense();
             break;
             case STATE_NO_QUARTER:
-                System.out.println("There is no quarter");
+                System.out.println("You turned, but there is no quarter");
             break;
             case STATE_SOLD_OUT:
                 System.out.println("There is no gumball anymore, sorry...");
@@ -92,6 +92,28 @@ public class GumballMachine {
                 }
             break;
         }   
+    }
+
+    @Override
+    public String toString() {
+        return "Gumball Machine" + "\n" + 
+                "Inventory: " + this.remainingGumball + "\n" + 
+                "Machine is " + this.getStringMachineState() + "\n\n";
+    }
+
+    private String getStringMachineState() {
+        switch(this.currentState) {
+            case STATE_SOLD_OUT:
+                return "sold out";
+            case STATE_SOLD:
+                return "sold";
+            case STATE_NO_QUARTER:
+                return "waiting for quarter";
+            case STATE_HAS_QUARTER:
+                return "ready to crank";
+        }
+
+        throw new UnsupportedOperationException("The current state is undefined: " + this.currentState);
     }
 
 }
