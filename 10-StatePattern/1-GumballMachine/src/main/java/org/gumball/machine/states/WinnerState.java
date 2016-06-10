@@ -2,8 +2,8 @@ package org.gumball.machine.states;
 
 import org.gumball.machine.GumballMachine;
 
-public class SoldState extends State {
-    public SoldState(GumballMachine machine) {
+public class WinnerState extends State {
+    public WinnerState(GumballMachine machine) {
         super(machine);
     }
 
@@ -25,17 +25,22 @@ public class SoldState extends State {
     @Override
     public void dispense() {
         machine.releaseBall();
-
         if(machine.getRemainingGumBall() == 0) {
-            System.out.println("Oops, out of gumballs now!!!");
             machine.setState(machine.getSoldOutState());
         } else {
-            machine.setState(machine.getNoQuarterState());
+            machine.releaseBall();
+            System.out.println("YOU ARE A WINNER!");
+            if(machine.getRemainingGumBall() > 0) {
+                machine.setState(machine.getNoQuarterState());
+            } else {
+                System.out.println("Oops, out of gumballs!");
+                machine.setState(machine.getSoldOutState());
+            }
         }
     }
 
     @Override
     public String toString() {
-        return "sold";
+        return "WINNER";
     }
 }

@@ -21,7 +21,12 @@ public class HasQuarterState extends State {
     @Override
     public void turnCrank() {
         System.out.println("You turned...");
-        machine.setState(machine.getSoldState());
+        double winner = Math.random();
+        if(winner < 0.1 && machine.getRemainingGumBall() > 1) {
+            machine.setState(machine.getWinnerState());
+        } else {
+            machine.setState(machine.getSoldState());
+        }
     }
 
     @Override
