@@ -35,6 +35,11 @@ public class SoldState extends State {
     }
 
     @Override
+    public void refill(int gumballs) {
+        System.out.println("No need to refill");
+    }
+
+    @Override
     public String toString() {
         return "sold";
     }

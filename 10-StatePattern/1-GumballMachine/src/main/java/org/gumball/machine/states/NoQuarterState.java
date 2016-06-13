@@ -29,6 +29,11 @@ public class NoQuarterState extends State {
     }
 
     @Override
+    public void refill(int gumballs) {
+        System.out.println("No need to refill");
+    }
+
+    @Override
     public String toString() {
         return "waiting for quarter";
     }

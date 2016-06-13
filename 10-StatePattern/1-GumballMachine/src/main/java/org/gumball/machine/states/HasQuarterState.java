@@ -30,6 +30,11 @@ public class HasQuarterState extends State {
     }
 
     @Override
+    public void refill(int gumballs) {
+        System.out.println("No need to refill");
+    }
+
+    @Override
     public void dispense() {
         System.out.println("No gumball dispensed");
     }

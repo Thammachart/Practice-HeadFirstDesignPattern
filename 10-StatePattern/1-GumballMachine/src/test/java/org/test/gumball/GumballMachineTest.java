@@ -63,4 +63,20 @@ public class GumballMachineTest {
 
         System.out.println(gumballMachine);
     }
+
+    @Test
+    public void gumballMachineRefillTest() {
+        GumballMachine gumballMachine = new GumballMachine(1);
+
+        System.out.println(gumballMachine);
+
+        gumballMachine.insertQuarter();
+        gumballMachine.turnCrank();
+
+        System.out.println(gumballMachine);
+
+        gumballMachine.refill(2);
+
+        System.out.println(gumballMachine);
+    }
 }

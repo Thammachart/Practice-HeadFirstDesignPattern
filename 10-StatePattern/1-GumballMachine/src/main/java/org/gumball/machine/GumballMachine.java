@@ -47,10 +47,18 @@ public class GumballMachine {
         this.currentState = state;
     }
 
+    public void refillGumBall(int gumballs) {
+        this.remainingGumball += gumballs;
+    }
+
     public void releaseBall() {
         System.out.println("Gumball comes rolling out the slot");
         if(this.remainingGumball != 0)
             this.remainingGumball--;
+    }
+
+    public void refill(int gumballs) {
+        this.currentState.refill(gumballs);
     }
 
     public int getRemainingGumBall() {

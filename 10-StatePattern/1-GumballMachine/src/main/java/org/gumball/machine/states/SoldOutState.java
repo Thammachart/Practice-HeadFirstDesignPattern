@@ -28,6 +28,13 @@ public class SoldOutState extends State {
     }
 
     @Override
+    public void refill(int gumballs) {
+        System.out.println("Refilling the machine!");
+        machine.refillGumBall(gumballs);
+        machine.setState(machine.getNoQuarterState());
+    }
+
+    @Override
     public String toString() {
         return "sold out";
     }
