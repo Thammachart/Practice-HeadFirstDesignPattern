@@ -1,0 +1,10 @@
+package org.gumball.machine.remote;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+public interface GumballMachineRemote extends Remote {
+    int getRemainingGumBall() throws RemoteException;
+    String getLocation() throws RemoteException;
+    String getStringMachineState() throws RemoteException;
+}

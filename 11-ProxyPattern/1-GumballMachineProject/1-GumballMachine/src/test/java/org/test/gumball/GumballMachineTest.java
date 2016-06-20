@@ -3,7 +3,6 @@ package org.test.gumball;
 import org.junit.Test;
 
 import org.gumball.machine.GumballMachine;
-import org.gumball.GumballMonitor;
 
 public class GumballMachineTest {
     @Test
@@ -79,13 +78,5 @@ public class GumballMachineTest {
         gumballMachine.refill(2);
 
         System.out.println(gumballMachine);
-    }
-
-    @Test
-    public void gumballMachineMonitorTest() {
-        GumballMachine gumballMachine = new GumballMachine("Seattle",12);
-        GumballMonitor gumballMonitor = new GumballMonitor(gumballMachine);
-
-        gumballMonitor.report();
     }
 }

@@ -1,8 +1,11 @@
 package org.gumball.machine;
 
+import java.rmi.RemoteException;
+
+import org.gumball.machine.remote.GumballMachineRemote;
 import org.gumball.machine.states.*;
 
-public class GumballMachine {
+public class GumballMachine implements GumballMachineRemote {
     private State soldOutState;
     private State noQuarterState;
     private State hasQuarterState;
@@ -69,10 +72,6 @@ public class GumballMachine {
         this.currentState.refill(gumballs);
     }
 
-    public int getRemainingGumBall() {
-        return this.remainingGumball;
-    }
-
     public void insertQuarter() {
         this.currentState.insertQuarter();
     }
@@ -86,8 +85,19 @@ public class GumballMachine {
         this.currentState.dispense();
     }
 
+    @Override
+    public int getRemainingGumBall() {
+        return this.remainingGumball;
+    }
+
+    @Override
     public String getLocation() {
         return location;
+    }
+
+    @Override
+    public String getStringMachineState() {
+        return this.currentState.toString();
     }
 
     @Override
@@ -96,9 +106,4 @@ public class GumballMachine {
                 "Inventory: " + this.remainingGumball + "\n" +
                 "Machine is " + this.getStringMachineState() + "\n\n";
     }
-
-    public  String getStringMachineState() {
-        return this.currentState.toString();
-    }
-
 }
