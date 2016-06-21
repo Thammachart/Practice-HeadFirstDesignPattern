@@ -9,7 +9,7 @@
 
 apply plugin: 'application'
 
-mainClassName = ''
+mainClassName = 'org.cd.ImageProxyTestDrive'
 
 repositories {
     jcenter()
