@@ -12,7 +12,7 @@ public class ImageProxyTestDrive {
         URL url = null;
 
         try {
-            url = new URL("https://static.pexels.com/photos/3247/nature-forest-industry-rails.jpg");
+            url = new URL("http://www.iworkscorp.com/wp-content/uploads/2015/05/200x100.gif");
         } catch(Exception e) {
             e.printStackTrace();
             System.exit(1);

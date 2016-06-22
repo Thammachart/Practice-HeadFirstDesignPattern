@@ -26,11 +26,6 @@ public class HasImageState implements State {
 
     @Override
     public void paintIcon(Component component, Graphics graphics, int x, int y) {
-        System.out.println("PAINT THIS");
         this.icon.paintIcon(component, graphics, 10, 10);
-        System.out.println("Image: " + (icon.getImage() != null));
-        // System.out.println(x + ":" + y);
-        // graphics.drawString("Hahahha", 10, 10);
-        // graphics.drawImage(icon.getImage(),0,0,null);
     }
 }

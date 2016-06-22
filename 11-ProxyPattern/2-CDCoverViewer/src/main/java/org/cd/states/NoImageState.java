@@ -2,6 +2,8 @@ package org.cd.states;
 
 import java.awt.Component;
 import java.awt.Graphics;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import java.net.URL;
 
@@ -39,11 +41,11 @@ public class NoImageState implements State {
         synchronized(lockObject) {
             Thread retrivalThread = new Thread(() -> {
                 try {
-                    ImageIcon icon = new ImageIcon(imageProxy.getURL(), "CD Cover");
+                    ImageIcon icon = new ImageIcon(ImageIO.read(imageProxy.getURL()), "CD Cover");
+
                     imageProxy.setState(new HasImageState(icon));
 
                     component.repaint();
-                    System.out.println("Image is loaded!");
                 } catch(Exception e) {
                     e.printStackTrace();
                 }
