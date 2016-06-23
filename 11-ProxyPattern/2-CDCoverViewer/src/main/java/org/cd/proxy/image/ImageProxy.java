@@ -8,28 +8,34 @@ import java.net.URL;
 import org.cd.states.*;
 
 public class ImageProxy implements Icon {
-    private final URL imageURL;
     private Thread retrivalThread;
     private boolean retrieving;
+
+    private URL url;
 
     private State currentState;
 
     private static int DEFAULT_HEIGHT = 600;
     private static int DEFAULT_WIDTH = 800;
 
-    public ImageProxy(URL url) {
+    public ImageProxy(URL defaultURL) {
         this.retrieving = false;
-        this.imageURL = url;
+        this.url = defaultURL;
 
-        this.currentState = new NoImageState(this);
+        setURL(defaultURL);
+    }
+
+    public URL getURL() {
+        return this.url;
+    }
+
+    public void setURL(URL url) {
+        this.url = url;
+        setState(new NoImageState(this));
     }
 
     public void setState(State state) {
         this.currentState = state;
-    }
-
-    public URL getURL() {
-        return imageURL;
     }
 
     @Override
