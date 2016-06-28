@@ -13,6 +13,8 @@ repositories {
     jcenter()
 }
 
+test.testLogging.showStandardStreams = true;
+
 dependencies {
     testCompile 'junit:junit:4.12'
 }
