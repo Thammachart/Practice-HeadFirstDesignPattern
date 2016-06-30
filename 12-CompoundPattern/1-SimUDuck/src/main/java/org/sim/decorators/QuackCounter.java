@@ -1,6 +1,7 @@
 package org.sim.decorators;
 
 import org.sim.behaviors.Quackable;
+import org.sim.observers.Observer;
 
 public class QuackCounter implements Quackable {
     private Quackable quackable;
@@ -16,7 +17,21 @@ public class QuackCounter implements Quackable {
         numberOfQuacks++;
     }
 
+    @Override
+    public void registerObserver(Observer observer) {
+        quackable.registerObserver(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        quackable.notifyObservers();
+    }
+
     public static int getQuacks() {
         return numberOfQuacks;
+    }
+
+    public static void resetQuacks() {
+        numberOfQuacks = 0;
     }
 }

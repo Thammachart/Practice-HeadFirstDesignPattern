@@ -1,5 +1,7 @@
 package org.sim.behaviors;
 
-public interface Quackable {
+import org.sim.observers.QuackObservable;
+
+public interface Quackable extends QuackObservable {
     void quack();
 }
