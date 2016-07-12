@@ -1,5 +1,8 @@
 package org.dj.models;
 
+import org.dj.views.BeatObserver;
+import org.dj.views.BPMObserver;
+
 public interface BeatModelInterface {
     void initialize();
 
