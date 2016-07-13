@@ -9,7 +9,7 @@
 
 apply plugin: 'application'
 
-mainClassName = 'org.dj.MainClass'
+mainClassName = 'org.dj.MainClassHeart'
 
 repositories {
     jcenter()

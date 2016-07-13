@@ -7,8 +7,8 @@ import org.dj.controllers.*;
 public class MainClass {
     public static void main(String args[]) {
         BeatModelInterface model = new BeatModel();
-        BeatControlController control = new BeatControlController(model);
-        BeatOutputController output = new BeatOutputController(model);
+        ControllerInterface control = new BeatControlController(model);
+        ControllerInterface output = new BeatOutputController(model);
         model.initialize();
     }
 }
