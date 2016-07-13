@@ -1,14 +1,7 @@
 package org.dj.models;
 
 import java.util.ArrayList;
-import javax.sound.midi.Sequence;
-import javax.sound.midi.Sequencer;
-import javax.sound.midi.MetaEventListener;
-import javax.sound.midi.MetaMessage;
-import javax.sound.midi.MidiSystem;
-import javax.sound.midi.MidiEvent;
-import javax.sound.midi.Track;
-import javax.sound.midi.ShortMessage;
+import javax.sound.midi.*;
 
 import org.dj.views.BeatObserver;
 import org.dj.views.BPMObserver;
@@ -30,12 +23,12 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
     @Override
     public void on() {
         sequencer.start();
-        setBPM(90);
+        setBPM(bpm);
     }
 
     @Override
     public void off() {
-        setBPM(0);
+        // setBPM(0);
         sequencer.stop();
     }
 
@@ -51,12 +44,8 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
         return this.bpm;
     }
 
-    void beatEvent() {
-        notifyBeatObservers();
-    }
-
     @Override
-    public void registerObserver(BeatObserver observer) {
+    public void registerBeatObserver(BeatObserver observer) {
         this.beatObservers.add(observer);
     }
 
@@ -67,12 +56,12 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
     }
 
     @Override
-    public void removeObserver(BeatObserver observer) {
+    public void removeBeatObserver(BeatObserver observer) {
         this.beatObservers.remove(observer);
     }
 
     @Override
-    public void registerObserver(BPMObserver observer) {
+    public void registerBPMObserver(BPMObserver observer) {
         this.bpmObservers.add(observer);
     }
 
@@ -83,17 +72,18 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
     }
 
     @Override
-    public void removeObserver(BPMObserver observer) {
+    public void removeBPMObserver(BPMObserver observer) {
         this.bpmObservers.remove(observer);
     }
 
     @Override
     public void meta(MetaMessage meta) {
-        if(meta.getType() == 47) {
-            beatEvent();
-            sequencer.start();
-            setBPM(getBPM());
-        }
+        notifyBeatObservers();
+        // if(meta.getType() == 47) {
+        //
+        //     sequencer.start();
+        //     setBPM(getBPM());
+        // }
     }
 
     public void setUpMidi() {
@@ -132,15 +122,18 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 
 			if (key != 0) {
 				track.add(makeEvent(144,9,key, 100, i));
+                track.add(makeMetaMessageEvent(i));
 				track.add(makeEvent(128,9,key, 100, i+1));
+                track.add(makeMetaMessageEvent(i+1));
 			}
 		}
 	}
 
-	public  MidiEvent makeEvent(int comd, int chan, int one, int two, int tick) {
+	public MidiEvent makeEvent(int comd, int chan, int one, int two, int tick) {
 		MidiEvent event = null;
 		try {
-			ShortMessage a = new ShortMessage();
+			// MetaMessage a = new MetaMessage();
+            ShortMessage a = new ShortMessage();
 			a.setMessage(comd, chan, one, two);
 			event = new MidiEvent(a, tick);
 
@@ -149,4 +142,16 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 		}
 		return event;
 	}
+
+    public MidiEvent makeMetaMessageEvent(int tick) {
+        MidiEvent event = null;
+		try {
+			MetaMessage a = new MetaMessage();
+			event = new MidiEvent(a, tick);
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return event;
+    }
 }

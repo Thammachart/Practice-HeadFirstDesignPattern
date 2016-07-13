@@ -14,11 +14,11 @@ public interface BeatModelInterface {
 
     int getBPM();
 
-    void registerObserver(BeatObserver observer);
+    void registerBeatObserver(BeatObserver observer);
 
-    void removeObserver(BeatObserver observer);
+    void removeBeatObserver(BeatObserver observer);
 
-    void registerObserver(BPMObserver observer);
+    void registerBPMObserver(BPMObserver observer);
 
-    void removeObserver(BPMObserver observer);
+    void removeBPMObserver(BPMObserver observer);
 }

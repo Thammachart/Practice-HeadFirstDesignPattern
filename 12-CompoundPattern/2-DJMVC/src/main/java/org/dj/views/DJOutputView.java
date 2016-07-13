@@ -1,21 +1,19 @@
 package org.dj.views;
 
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import org.dj.models.BeatModelInterface;
 
-public class DJOutputView implements ActionListener, BeatObserver, BPMObserver {
+public class DJOutputView implements BeatObserver, BPMObserver {
     private BeatModelInterface model;
-    private ControllerInterface controller;
     private JFrame viewFrame;
     private JPanel viewPanel;
     private BeatBar beatBar;
     private JLabel bpmOutputLabel;
 
-    public DJOutputView(ControllerInterface controller, BeatModelInterface model) {
-        this.controller = controller;
+    public DJOutputView(BeatModelInterface model) {
         this.model = model;
 
         model.registerBeatObserver(this);
@@ -26,10 +24,10 @@ public class DJOutputView implements ActionListener, BeatObserver, BPMObserver {
         viewPanel = new JPanel(new GridLayout(1, 2));
         viewFrame = new JFrame("DJ Output View");
 
-        bpmOutputLabel = new JLabel("offline", SwingConstants.CENTER);
+        bpmOutputLabel = new JLabel("Offline", SwingConstants.CENTER);
 
         beatBar = new BeatBar();
-        beatBar.setValue(0);
+        beatBar.setValue(50);
 
         JPanel bpmPanel = new JPanel(new GridLayout(2, 1));
         bpmPanel.add(beatBar);
@@ -46,22 +44,21 @@ public class DJOutputView implements ActionListener, BeatObserver, BPMObserver {
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) {
-        // TODO: actionPerformed
-    }
-
-    @Override
     public void updateBPM() {
-        int bpm = model.getBPM();
-        if(bpm == 0) {
-            bpmOutputLabel.setText("offline");
-        } else {
-            bpmOutputLabel.setText("Current BPM: " + model.getBPM());
+        if(model != null) {
+            int bpm = model.getBPM();
+            if(bpm == 0) {
+                bpmOutputLabel.setText("Offline");
+            } else {
+                bpmOutputLabel.setText("Current BPM: " + model.getBPM());
+            }
         }
     }
 
     @Override
     public void updateBeat() {
-        beatBar.setValue(100);
+        if(beatBar != null) {
+            beatBar.setValue(100);
+        }
     }
 }
