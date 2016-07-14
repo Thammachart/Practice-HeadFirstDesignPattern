@@ -1,0 +1,19 @@
+<!-- <web-app>
+    <servlet>
+        <servlet-name>DJViewServlet</servlet-name>
+        <servlet-class>org.dj.controllers.DJViewServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DJViewServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app> -->
+
+<web-app
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
+    metadata-complete="false"
+    version="3.1">
+</web-app>

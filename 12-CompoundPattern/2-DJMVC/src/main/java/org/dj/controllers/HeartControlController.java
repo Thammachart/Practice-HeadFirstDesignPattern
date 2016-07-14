@@ -13,7 +13,7 @@ public class HeartControlController implements ControllerInterface {
         view = new DJControlView(this, new HeartAsBeatModelAdapter(model));
         view.createView();
         view.disableStopMenuItem();
-        view.enableStartMenuItem();
+        view.disableStartMenuItem();
     }
 
     @Override
